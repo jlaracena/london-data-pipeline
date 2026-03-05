@@ -17,6 +17,8 @@ Task graph:
     validate_loads
 """
 
+
+from __future__ import annotations
 import logging
 import os
 from datetime import datetime, timedelta, timezone
@@ -63,7 +65,7 @@ def _log_pipeline_run(
     started_at: datetime,
 ) -> None:
     """Write one row to the pipeline_runs audit table."""
-    dsn = os.environ["AIRFLOW_CONN_POSTGRES_DEFAULT"]
+    dsn = os.environ["AIRFLOW_CONN_POSTGRES_DEFAULT"].replace("postgresql+psycopg2://", "postgresql://")
     finished_at = datetime.now(timezone.utc)
 
     with psycopg2.connect(dsn) as conn:
@@ -166,7 +168,7 @@ def _validate_loads(**context: Any) -> None:
     has 0 rows or if quality failed on any run in this DAG execution.
     """
     dag_run_id: str = context["run_id"]
-    dsn = os.environ["AIRFLOW_CONN_POSTGRES_DEFAULT"]
+    dsn = os.environ["AIRFLOW_CONN_POSTGRES_DEFAULT"].replace("postgresql+psycopg2://", "postgresql://")
 
     raw_tables = [
         "raw_weather", "raw_air_quality", "raw_news", "raw_countries",

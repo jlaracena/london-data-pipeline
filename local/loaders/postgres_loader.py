@@ -5,6 +5,8 @@ AIRFLOW_CONN_<CONN_ID_UPPER> and performs idempotent batch inserts via
 INSERT ... ON CONFLICT DO NOTHING.
 """
 
+
+from __future__ import annotations
 import logging
 import os
 from typing import Any
@@ -45,7 +47,7 @@ def _resolve_dsn(conn_id: str) -> str:
             f"Environment variable '{env_key}' is not set. "
             "Set AIRFLOW_CONN_POSTGRES_DEFAULT in your .env file."
         )
-    return dsn
+    return dsn.replace("postgresql+psycopg2://", "postgresql://")
 
 
 def load_to_postgres(

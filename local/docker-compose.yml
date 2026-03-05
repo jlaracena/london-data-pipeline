@@ -18,6 +18,7 @@ x-airflow-common:
     - ./dags:/opt/airflow/dags
     - ./extractors:/opt/airflow/extractors
     - ./loaders:/opt/airflow/loaders
+    - ./utils:/opt/airflow/utils
     - ./logs:/opt/airflow/logs
     - ./plugins:/opt/airflow/plugins
   user: "${AIRFLOW_UID:-50000}:0"
