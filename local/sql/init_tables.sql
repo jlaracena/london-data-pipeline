@@ -97,3 +97,22 @@ CREATE TABLE IF NOT EXISTS raw_crime (
     _source         VARCHAR(50)  NOT NULL,
     CONSTRAINT uq_crime UNIQUE (crime_id)
 );
+
+-- ── pipeline_runs (observability audit log) ───────────────────────────────────
+-- Records metadata for every extract+load task execution.
+-- Enables monitoring, alerting, and trend analysis of pipeline health.
+CREATE TABLE IF NOT EXISTS pipeline_runs (
+    id               SERIAL       PRIMARY KEY,
+    dag_run_id       VARCHAR(200) NOT NULL,
+    table_name       VARCHAR(100) NOT NULL,
+    rows_extracted   INTEGER,
+    rows_inserted    INTEGER,
+    rows_skipped     INTEGER,
+    quality_passed   BOOLEAN,
+    null_violations  TEXT[],
+    range_violations TEXT[],
+    duplicate_keys   INTEGER,
+    started_at       TIMESTAMPTZ  NOT NULL DEFAULT NOW(),
+    finished_at      TIMESTAMPTZ,
+    status           VARCHAR(20)  CHECK (status IN ('success', 'failed', 'warning'))
+);
