@@ -1,0 +1,11 @@
+forest_bq:
+  target: cloud
+  outputs:
+    cloud:
+      type: bigquery
+      method: oauth
+      project: "{{ env_var('DBT_PROJECT') }}"
+      dataset: mart
+      threads: 4
+      timeout_seconds: 300
+      location: europe-west2

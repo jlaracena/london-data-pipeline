@@ -1,0 +1,23 @@
+# Secrets
+.env
+
+# Airflow runtime
+logs/
+airflow.db
+airflow.cfg
+webserver_config.py
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+dist/
+.venv/
+venv/
+
+# macOS
+.DS_Store

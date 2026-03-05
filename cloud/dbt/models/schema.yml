@@ -1,0 +1,118 @@
+version: 2
+
+models:
+  - name: stg_weather
+    description: >
+      Cleaned and typed hourly weather forecasts for London sourced from Open-Meteo.
+      Adds a human-readable `weather_description` column derived from WMO weathercode.
+    columns:
+      - name: forecast_at
+        description: UTC timestamp of the forecast hour.
+        tests:
+          - not_null
+      - name: temperature_celsius
+        description: Air temperature at 2 m above ground in degrees Celsius.
+      - name: windspeed_kmh
+        description: Wind speed at 10 m above ground in km/h.
+      - name: weathercode
+        description: WMO weather interpretation code (integer).
+      - name: weather_description
+        description: Human-readable label derived from weathercode (e.g. 'Clear sky', 'Rain').
+      - name: location_city
+        description: City name — always 'London' for this pipeline.
+        tests:
+          - not_null
+
+  - name: stg_air_quality
+    description: >
+      Cleaned air quality measurements for London from OpenAQ.
+      Rows with negative sensor readings (value < 0) are excluded.
+    columns:
+      - name: measured_at
+        description: UTC timestamp when the measurement was recorded.
+        tests:
+          - not_null
+      - name: parameter
+        description: Pollutant parameter name (e.g. pm25, no2, o3).
+        tests:
+          - not_null
+      - name: value
+        description: Measured concentration of the pollutant. Always >= 0 in this model.
+      - name: unit
+        description: Unit of measurement (e.g. µg/m³).
+      - name: location_id
+        description: OpenAQ numeric location identifier.
+
+  - name: stg_news
+    description: >
+      Cleaned news articles about London micro-mobility from NewsAPI.
+      Adds `is_recent` flag for articles published within the last 7 days.
+    columns:
+      - name: article_id
+        description: MD5 hex digest of the article URL — used as the deduplication key.
+        tests:
+          - not_null
+          - unique
+      - name: title
+        description: Article headline.
+      - name: published_at
+        description: UTC publication timestamp.
+      - name: is_recent
+        description: True if the article was published within the last 7 days.
+
+  - name: stg_countries
+    description: Static reference data for the United Kingdom from RestCountries.
+    columns:
+      - name: country_code
+        description: ISO 3166-1 alpha-2 country code (always 'GB').
+        tests:
+          - not_null
+          - unique
+      - name: country_name
+        description: Common English name of the country.
+      - name: population
+        description: Most recent population estimate.
+      - name: languages
+        description: Array of official language names.
+      - name: currencies
+        description: Array of ISO 4217 currency codes.
+
+  - name: mart_city_conditions
+    description: >
+      Daily aggregate of London weather and air quality conditions.
+      Joins stg_weather and stg_air_quality on calendar date.
+      Partitioned by date.
+    columns:
+      - name: date
+        description: Calendar date (UTC) of the aggregation.
+        tests:
+          - not_null
+          - unique
+      - name: avg_temperature_celsius
+        description: Average hourly temperature for the day in degrees Celsius.
+      - name: max_windspeed_kmh
+        description: Maximum hourly wind speed observed during the day in km/h.
+      - name: parameters_measured
+        description: Array of distinct air quality parameters measured that day.
+
+  - name: mart_news_enriched
+    description: >
+      Recent (last 7 days) London micro-mobility news articles enriched with
+      UK country reference data (country_name, region, population).
+    columns:
+      - name: article_id
+        description: MD5 hex digest of the article URL.
+        tests:
+          - not_null
+      - name: title
+        description: Article headline.
+      - name: published_at
+        description: UTC publication timestamp.
+      - name: is_recent
+        description: Always true in this model (filter applied in stg_news).
+      - name: country_name
+        description: Country name from stg_countries (always 'United Kingdom').
+      - name: region
+        description: Geographic region from stg_countries (always 'Europe').
+      - name: population
+        description: UK population figure from stg_countries.

@@ -1,0 +1,11 @@
+version: 2
+
+sources:
+  - name: raw
+    database: "{{ env_var('DBT_PROJECT') }}"
+    schema: raw
+    tables:
+      - name: raw_weather
+      - name: raw_air_quality
+      - name: raw_news
+      - name: raw_countries
