@@ -191,7 +191,11 @@ def _validate_loads(**context: Any) -> None:
                     "  %-24s  rows=%-8d  last_ingested=%s",
                     table, row_count, last_ingested,
                 )
-                if row_count == 0:
+                if row_count == 0 and table == "raw_news":
+                    logger.warning(
+                        "  raw_news has 0 rows — NewsAPI may have no results today (non-fatal)"
+                    )
+                elif row_count == 0:
                     empty_tables.append(table)
 
             # ── Quality check from audit log ──────────────────────────────────
