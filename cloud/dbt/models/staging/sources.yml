@@ -9,3 +9,6 @@ sources:
       - name: raw_air_quality
       - name: raw_news
       - name: raw_countries
+      - name: raw_tfl_bikepoints
+      - name: raw_bank_holidays
+      - name: raw_crime

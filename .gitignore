@@ -21,3 +21,10 @@ venv/
 
 # macOS
 .DS_Store
+
+# Terraform — real values, never commit
+terraform.tfvars
+*.tfstate
+*.tfstate.backup
+.terraform/
+.terraform.lock.hcl

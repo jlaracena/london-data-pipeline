@@ -8,10 +8,13 @@ resource "google_storage_bucket" "function_source" {
 
 locals {
   functions = {
-    weather     = "fn_extract_weather"
-    airquality  = "fn_extract_airquality"
-    news        = "fn_extract_news"
-    countries   = "fn_extract_countries"
+    weather      = "fn_extract_weather"
+    airquality   = "fn_extract_airquality"
+    news         = "fn_extract_news"
+    countries    = "fn_extract_countries"
+    tfl          = "fn_extract_tfl"
+    bankholidays = "fn_extract_bankholidays"
+    crime        = "fn_extract_crime"
   }
 }
 

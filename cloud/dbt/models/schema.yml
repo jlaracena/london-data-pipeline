@@ -116,3 +116,90 @@ models:
         description: Geographic region from stg_countries (always 'Europe').
       - name: population
         description: UK population figure from stg_countries.
+
+  - name: stg_tfl_bikepoints
+    description: >
+      Santander Cycles docking station availability snapshot from TfL BikePoint API.
+      Adds occupancy_rate (nb_bikes / nb_docks). Stations with no dock data are excluded.
+    columns:
+      - name: station_id
+        description: TfL unique station identifier (e.g. BikePoints_1).
+        tests:
+          - not_null
+      - name: station_name
+        description: Human-readable station name and location.
+      - name: nb_bikes
+        description: Number of bikes currently available at the station.
+      - name: nb_docks
+        description: Total number of docking points at the station.
+      - name: occupancy_rate
+        description: Proportion of docks currently occupied by bikes (0.0 to 1.0).
+      - name: snapshot_date
+        description: Calendar date of the snapshot.
+        tests:
+          - not_null
+
+  - name: stg_bank_holidays
+    description: >
+      UK public holidays for all three divisions from GOV.UK.
+      Adds is_england_wales flag to filter to Forest's operating region.
+    columns:
+      - name: division
+        description: UK division (england-and-wales, scotland, northern-ireland).
+        tests:
+          - not_null
+      - name: title
+        description: Official name of the public holiday.
+        tests:
+          - not_null
+      - name: holiday_date
+        description: Date of the holiday (DATE type).
+        tests:
+          - not_null
+      - name: bunting
+        description: True if the holiday is marked with official bunting.
+      - name: is_england_wales
+        description: True if the holiday applies to England and Wales.
+
+  - name: stg_crime
+    description: >
+      Street-level crime incidents for central London from the UK Police API.
+      Adds is_resolved and is_bicycle_theft derived flags.
+    columns:
+      - name: crime_id
+        description: Unique integer identifier for the crime incident.
+        tests:
+          - not_null
+          - unique
+      - name: category
+        description: Crime category (e.g. bicycle-theft, anti-social-behaviour).
+      - name: month
+        description: Reporting month in YYYY-MM format.
+      - name: is_resolved
+        description: True if the crime has a recorded outcome status.
+      - name: is_bicycle_theft
+        description: True if the crime category is bicycle-theft — directly relevant to Forest.
+
+  - name: mart_safety_overview
+    description: >
+      Monthly safety and bike availability overview for London.
+      Combines crime statistics (UK Police API) with Santander Cycles dock availability (TfL)
+      and flags months containing bank holidays. Designed to help Forest eBikes identify
+      zones and periods where safety conditions affect micro-mobility demand.
+    columns:
+      - name: month_date
+        description: First day of the reporting month (DATE).
+        tests:
+          - not_null
+      - name: crime_category
+        description: Type of crime (e.g. bicycle-theft, violent-crime).
+      - name: incident_count
+        description: Total number of reported incidents for this category and month.
+      - name: bicycle_theft_count
+        description: Number of bicycle thefts — key metric for micro-mobility safety.
+      - name: resolution_rate_pct
+        description: Percentage of incidents with a recorded outcome (0–100).
+      - name: avg_occupancy_pct
+        description: Average dock occupancy across all Santander Cycles stations that day.
+      - name: has_bank_holiday
+        description: True if this month contains at least one England & Wales bank holiday.
