@@ -31,6 +31,8 @@ terraform.tfvars
 
 # Local notes (not part of the project)
 content
+PRESENTATION_SCRIPT.md
+explicacion_pipeline.md
 
 # Take-home assessment PDF (private)
 *.pdf
