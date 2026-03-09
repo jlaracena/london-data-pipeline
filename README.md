@@ -11,23 +11,9 @@ Built for the Forest eBikes Senior Data Engineer take-home assessment.
 
 ## Architecture
 
-```
-Cloud Scheduler (06:00 UTC)
-        │
-        ▼ (7 parallel HTTP triggers)
-Cloud Functions Gen 2  ──→  BigQuery (raw dataset)
-        │                          │
-        │                          ▼
-        │                   dbt (Cloud Run Job)
-        │                          │
-        │                          ▼
-        │                   BigQuery (mart dataset)
-        │                          │
-        └──────────────────────────▼
-                            Looker Studio Dashboard
-```
+![Architecture Diagram](architecture.png)
 
-Full architecture diagram with Mermaid: [`ARCHITECTURE.md`](ARCHITECTURE.md)
+Full component breakdown and data lineage: [`ARCHITECTURE.md`](ARCHITECTURE.md)
 
 ---
 

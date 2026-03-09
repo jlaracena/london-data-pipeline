@@ -1,0 +1,199 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36" version="29.6.1">
+  <diagram id="architecture" name="Forest eBikes Pipeline">
+    <mxGraphModel dx="1697" dy="1098" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1654" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="2" parent="1" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;fontSize=22;fontStyle=1;fontColor=#1A237E;" value="Forest eBikes — London Data Pipeline" vertex="1">
+          <mxGeometry height="45" width="1293" x="33" y="15" as="geometry" />
+        </mxCell>
+        <mxCell id="3" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EBF5FB;strokeColor=#1A5276;strokeWidth=2;fontSize=13;fontStyle=1;fontColor=#1A5276;verticalAlign=top;arcSize=2;spacingTop=6;" value="GCP — europe-west2 (London)" vertex="1">
+          <mxGeometry height="870" width="1388" x="30" y="70" as="geometry" />
+        </mxCell>
+        <mxCell id="100" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F2F3F4;strokeColor=#909497;strokeWidth=2;fontSize=12;fontStyle=1;fontColor=#424242;verticalAlign=top;arcSize=3;spacingTop=6;" value="External APIs" vertex="1">
+          <mxGeometry height="725" width="178" x="50" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="101" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDFEFE;strokeColor=#BDC3C7;fontSize=11;" value="Open-Meteo&lt;br&gt;&lt;b&gt;Weather&lt;/b&gt;" vertex="1">
+          <mxGeometry height="72" width="158" x="60" y="137" as="geometry" />
+        </mxCell>
+        <mxCell id="102" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDFEFE;strokeColor=#BDC3C7;fontSize=11;" value="Open-Meteo&lt;br&gt;&lt;b&gt;Air Quality&lt;/b&gt;" vertex="1">
+          <mxGeometry height="72" width="158" x="60" y="219" as="geometry" />
+        </mxCell>
+        <mxCell id="103" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDFEFE;strokeColor=#BDC3C7;fontSize=11;" value="&lt;b&gt;NewsAPI&lt;/b&gt;&lt;br&gt;(API key required)" vertex="1">
+          <mxGeometry height="72" width="158" x="60" y="301" as="geometry" />
+        </mxCell>
+        <mxCell id="104" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDFEFE;strokeColor=#BDC3C7;fontSize=11;" value="&lt;b&gt;RestCountries&lt;/b&gt;&lt;br&gt;UK reference data" vertex="1">
+          <mxGeometry height="72" width="158" x="60" y="383" as="geometry" />
+        </mxCell>
+        <mxCell id="105" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDFEFE;strokeColor=#BDC3C7;fontSize=11;" value="&lt;b&gt;TfL BikePoint&lt;/b&gt;&lt;br&gt;~800 stations" vertex="1">
+          <mxGeometry height="72" width="158" x="60" y="465" as="geometry" />
+        </mxCell>
+        <mxCell id="106" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDFEFE;strokeColor=#BDC3C7;fontSize=11;" value="&lt;b&gt;GOV.UK&lt;/b&gt;&lt;br&gt;Bank Holidays" vertex="1">
+          <mxGeometry height="72" width="158" x="60" y="547" as="geometry" />
+        </mxCell>
+        <mxCell id="107" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDFEFE;strokeColor=#BDC3C7;fontSize=11;" value="&lt;b&gt;UK Police API&lt;/b&gt;&lt;br&gt;Crime data" vertex="1">
+          <mxGeometry height="72" width="158" x="60" y="629" as="geometry" />
+        </mxCell>
+        <mxCell id="200" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E9F7EF;strokeColor=#1E8449;strokeWidth=2;fontSize=12;fontColor=#1E8449;" value="☁  &lt;b&gt;Cloud Scheduler&lt;/b&gt;&lt;br&gt;7 jobs · 06:00–06:30 UTC daily · OIDC auth" vertex="1">
+          <mxGeometry height="58" width="268" x="268" y="85" as="geometry" />
+        </mxCell>
+        <mxCell id="300" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF9E7;strokeColor=#D4AC0D;strokeWidth=2;fontSize=12;fontStyle=1;fontColor=#7D6608;verticalAlign=top;arcSize=3;spacingTop=6;" value="Cloud Functions Gen 2 · Python 3.11" vertex="1">
+          <mxGeometry height="605" width="288" x="258" y="158" as="geometry" />
+        </mxCell>
+        <mxCell id="301" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFDE7;strokeColor=#D4AC0D;fontSize=11;" value="fn-extract-&lt;b&gt;weather&lt;/b&gt;" vertex="1">
+          <mxGeometry height="62" width="268" x="268" y="192" as="geometry" />
+        </mxCell>
+        <mxCell id="302" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFDE7;strokeColor=#D4AC0D;fontSize=11;" value="fn-extract-&lt;b&gt;airquality&lt;/b&gt;" vertex="1">
+          <mxGeometry height="62" width="268" x="268" y="264" as="geometry" />
+        </mxCell>
+        <mxCell id="303" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFDE7;strokeColor=#D4AC0D;fontSize=11;" value="fn-extract-&lt;b&gt;news&lt;/b&gt;" vertex="1">
+          <mxGeometry height="62" width="268" x="268" y="336" as="geometry" />
+        </mxCell>
+        <mxCell id="304" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFDE7;strokeColor=#D4AC0D;fontSize=11;" value="fn-extract-&lt;b&gt;countries&lt;/b&gt;" vertex="1">
+          <mxGeometry height="62" width="268" x="268" y="408" as="geometry" />
+        </mxCell>
+        <mxCell id="305" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFDE7;strokeColor=#D4AC0D;fontSize=11;" value="fn-extract-&lt;b&gt;tfl&lt;/b&gt;" vertex="1">
+          <mxGeometry height="62" width="268" x="268" y="480" as="geometry" />
+        </mxCell>
+        <mxCell id="306" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFDE7;strokeColor=#D4AC0D;fontSize=11;" value="fn-extract-&lt;b&gt;bankholidays&lt;/b&gt;" vertex="1">
+          <mxGeometry height="62" width="268" x="268" y="552" as="geometry" />
+        </mxCell>
+        <mxCell id="307" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDEDEC;strokeColor=#C0392B;strokeWidth=2;fontSize=11;" value="fn-extract-&lt;b&gt;crime&lt;/b&gt;&lt;br&gt;&lt;font color=&#39;#C0392B&#39;&gt;▶ triggers dbt on success&lt;/font&gt;" vertex="1">
+          <mxGeometry height="62" width="268" x="268" y="624" as="geometry" />
+        </mxCell>
+        <mxCell id="400" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF9E7;strokeColor=#F39C12;strokeWidth=1.5;fontSize=11;fontColor=#7D6608;" value="🔑  &lt;b&gt;Secret Manager&lt;/b&gt; · NewsAPI key" vertex="1">
+          <mxGeometry height="52" width="268" x="268" y="778" as="geometry" />
+        </mxCell>
+        <mxCell id="500" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EBF5FB;strokeColor=#1A5276;strokeWidth=2;fontSize=14;fontStyle=1;fontColor=#1A5276;verticalAlign=top;arcSize=2;spacingTop=6;" value="BigQuery" vertex="1">
+          <mxGeometry height="809" width="400" x="657" y="123" as="geometry" />
+        </mxCell>
+        <mxCell id="510" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8DAEF;strokeColor=#6C3483;strokeWidth=2;fontSize=11;fontStyle=1;fontColor=#4A235A;verticalAlign=top;arcSize=3;spacingTop=5;" value="raw dataset · partitioned by ingested_at · MERGE dedup" vertex="1">
+          <mxGeometry height="451" width="380" x="662" y="172" as="geometry" />
+        </mxCell>
+        <mxCell id="511" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5EEF8;strokeColor=#7D3C98;fontSize=11;" value="raw_weather" vertex="1">
+          <mxGeometry height="46" width="360" x="677" y="209" as="geometry" />
+        </mxCell>
+        <mxCell id="512" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5EEF8;strokeColor=#7D3C98;fontSize=11;" value="raw_air_quality" vertex="1">
+          <mxGeometry height="46" width="360" x="677" y="261" as="geometry" />
+        </mxCell>
+        <mxCell id="513" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5EEF8;strokeColor=#7D3C98;fontSize=11;" value="raw_news" vertex="1">
+          <mxGeometry height="46" width="360" x="677" y="313" as="geometry" />
+        </mxCell>
+        <mxCell id="514" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5EEF8;strokeColor=#7D3C98;fontSize=11;" value="raw_countries" vertex="1">
+          <mxGeometry height="46" width="360" x="677" y="365" as="geometry" />
+        </mxCell>
+        <mxCell id="515" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5EEF8;strokeColor=#7D3C98;fontSize=11;" value="raw_tfl_bikepoints" vertex="1">
+          <mxGeometry height="46" width="360" x="677" y="417" as="geometry" />
+        </mxCell>
+        <mxCell id="516" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5EEF8;strokeColor=#7D3C98;fontSize=11;" value="raw_bank_holidays" vertex="1">
+          <mxGeometry height="46" width="360" x="677" y="469" as="geometry" />
+        </mxCell>
+        <mxCell id="517" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F5EEF8;strokeColor=#7D3C98;fontSize=11;" value="raw_crime" vertex="1">
+          <mxGeometry height="46" width="360" x="677" y="521" as="geometry" />
+        </mxCell>
+        <mxCell id="518" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FADBD8;strokeColor=#C0392B;fontSize=10;fontStyle=2;" value="pipeline_runs · observability audit log" vertex="1">
+          <mxGeometry height="36" width="360" x="677" y="575" as="geometry" />
+        </mxCell>
+        <mxCell id="520" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#AED6F1;strokeColor=#1A5276;strokeWidth=2;fontSize=11;fontStyle=1;fontColor=#1A5276;verticalAlign=top;arcSize=3;spacingTop=5;" value="mart dataset · analytics-ready · dbt managed" vertex="1">
+          <mxGeometry height="268" width="380" x="667" y="644" as="geometry" />
+        </mxCell>
+        <mxCell id="521" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6EAF8;strokeColor=#1A5276;fontSize=11;" value="&lt;b&gt;mart_city_conditions&lt;/b&gt;&lt;br&gt;daily weather + air quality aggregate" vertex="1">
+          <mxGeometry height="70" width="360" x="677" y="674" as="geometry" />
+        </mxCell>
+        <mxCell id="522" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6EAF8;strokeColor=#1A5276;fontSize=11;" value="&lt;b&gt;mart_news_enriched&lt;/b&gt;&lt;br&gt;news + UK country metadata" vertex="1">
+          <mxGeometry height="70" width="360" x="677" y="752" as="geometry" />
+        </mxCell>
+        <mxCell id="523" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D6EAF8;strokeColor=#1A5276;fontSize=11;" value="&lt;b&gt;mart_safety_overview&lt;/b&gt;&lt;br&gt;monthly crime + TfL + bank holidays" vertex="1">
+          <mxGeometry height="70" width="360" x="677" y="832" as="geometry" />
+        </mxCell>
+        <mxCell id="600" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#F4ECF7;strokeColor=#6C3483;strokeWidth=1.5;fontSize=11;fontColor=#6C3483;" value="&lt;b&gt;Terraform&lt;/b&gt;&lt;br&gt;IaC · 6 modules&lt;br&gt;(BQ, CF, Scheduler, SM, Cloud Run, Monitoring)" vertex="1">
+          <mxGeometry height="82" width="228" x="1168" y="85" as="geometry" />
+        </mxCell>
+        <mxCell id="601" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8F8F5;strokeColor=#117A65;strokeWidth=1.5;fontSize=11;fontColor=#117A65;" value="&lt;b&gt;Cloud Monitoring&lt;/b&gt;&lt;br&gt;ERROR log alerts&lt;br&gt;Email · max 1/hour" vertex="1">
+          <mxGeometry height="82" width="228" x="1168" y="188" as="geometry" />
+        </mxCell>
+        <mxCell id="602" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FEF9E7;strokeColor=#D4AC0D;strokeWidth=1.5;fontSize=11;fontColor=#7D6608;" value="&lt;b&gt;quality.py&lt;/b&gt; (shared)&lt;br&gt;null · range · dedup checks&lt;br&gt;→ HTTP 500 on failure" vertex="1">
+          <mxGeometry height="82" width="228" x="1168" y="291" as="geometry" />
+        </mxCell>
+        <mxCell id="603" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EBF5FB;strokeColor=#1A5276;strokeWidth=1.5;fontSize=11;fontColor=#1A5276;" value="&lt;b&gt;BigQuery MERGE&lt;/b&gt;&lt;br&gt;Idempotent loads&lt;br&gt;Safe to re-run" vertex="1">
+          <mxGeometry height="82" width="228" x="1168" y="394" as="geometry" />
+        </mxCell>
+        <mxCell id="610" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDEDEC;strokeColor=#C0392B;strokeWidth=2;fontSize=11;fontColor=#922B21;" value="&lt;b&gt;dbt Cloud Run Job&lt;/b&gt;&lt;br&gt;7 staging views + 3 mart tables&lt;br&gt;~30s · event-driven" vertex="1">
+          <mxGeometry height="82" width="228" x="1168" y="530" as="geometry" />
+        </mxCell>
+        <mxCell id="620" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E9F7EF;strokeColor=#1E8449;strokeWidth=2;fontSize=11;fontColor=#1E8449;" value="&lt;b&gt;Looker Studio&lt;/b&gt;&lt;br&gt;Live dashboard · 5 pages&lt;br&gt;City · Safety · News · TfL · Pipeline Health" vertex="1">
+          <mxGeometry height="82" width="228" x="1168" y="720" as="geometry" />
+        </mxCell>
+        <mxCell id="700" edge="1" parent="1" source="200" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#1E8449;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="300" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="701" edge="1" parent="1" source="101" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#BDC3C7;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="301" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="702" edge="1" parent="1" source="102" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#BDC3C7;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="302" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="703" edge="1" parent="1" source="103" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#BDC3C7;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="303" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="704" edge="1" parent="1" source="104" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#BDC3C7;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="304" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="705" edge="1" parent="1" source="105" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#BDC3C7;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="305" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="706" edge="1" parent="1" source="106" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#BDC3C7;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="306" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="707" edge="1" parent="1" source="107" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#BDC3C7;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="307" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="711" edge="1" parent="1" source="301" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#7D3C98;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="511" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="712" edge="1" parent="1" source="302" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#7D3C98;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="512" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="713" edge="1" parent="1" source="303" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#7D3C98;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="513" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="714" edge="1" parent="1" source="304" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#7D3C98;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="514" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="715" edge="1" parent="1" source="305" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#7D3C98;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="515" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="716" edge="1" parent="1" source="306" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#7D3C98;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="516" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="717" edge="1" parent="1" source="307" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#7D3C98;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="517" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="720" edge="1" parent="1" source="400" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#F39C12;strokeWidth=1.5;dashed=1;fontSize=10;fontColor=#7D6608;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" target="303" value="API key">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="730" edge="1" parent="1" source="307" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;strokeColor=#C0392B;strokeWidth=2.5;fontColor=#C0392B;fontStyle=1;fontSize=10;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="610" value="triggers on success">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="536" y="635" />
+              <mxPoint x="1078" y="635" />
+              <mxPoint x="1078" y="571" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="731" edge="1" parent="1" source="510" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#C0392B;strokeWidth=1.5;dashed=1;fontSize=10;fontColor=#922B21;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0;entryDx=0;entryDy=0;" target="610" value="reads">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="732" edge="1" parent="1" source="610" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#C0392B;strokeWidth=2;fontSize=10;fontColor=#922B21;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="520" value="writes">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="733" edge="1" parent="1" source="520" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#1E8449;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="620" value="">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="734" edge="1" parent="1" source="300" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;strokeColor=#C0392B;strokeWidth=1;dashed=1;fontSize=9;fontColor=#C0392B;exitX=1;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="518" value="logs run">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
