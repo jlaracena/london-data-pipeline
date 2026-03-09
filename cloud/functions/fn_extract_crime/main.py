@@ -13,6 +13,8 @@ import functions_framework
 from quality import validate, QualityReport
 from pipeline_logger import log_run
 import httpx
+import google.auth
+import google.auth.transport.requests
 from google.cloud import bigquery
 from tenacity import retry, retry_if_exception, stop_after_attempt, wait_exponential
 
@@ -22,6 +24,24 @@ logger = logging.getLogger(__name__)
 _POLICE_URL = "https://data.police.uk/api/crimes-street/all-crime"
 _SOURCE = "uk-police"
 _TABLE = "raw_crime"
+_DBT_JOB_REGION = "europe-west2"
+_DBT_JOB_NAME = "dbt-run"
+
+
+def _trigger_dbt(project: str) -> None:
+    """Trigger the dbt Cloud Run Job after successful crime data load."""
+    credentials, _ = google.auth.default(
+        scopes=["https://www.googleapis.com/auth/cloud-platform"]
+    )
+    credentials.refresh(google.auth.transport.requests.Request())
+    url = (
+        f"https://run.googleapis.com/v2/projects/{project}"
+        f"/locations/{_DBT_JOB_REGION}/jobs/{_DBT_JOB_NAME}:run"
+    )
+    with httpx.Client(timeout=30) as client:
+        resp = client.post(url, headers={"Authorization": f"Bearer {credentials.token}"}, json={})
+        resp.raise_for_status()
+    logger.info("dbt Cloud Run Job triggered — execution started")
 
 
 def _is_retryable(exc: BaseException) -> bool:
@@ -114,6 +134,10 @@ def handler(request: Any) -> tuple[dict[str, Any], int]:
         inserted = _load_to_bq(records, project, dataset)
         log_run(project, dataset, _TABLE, started_at, len(records), inserted, report, "success")
         logger.info("Crime load complete — rows_inserted=%d", inserted)
+        try:
+            _trigger_dbt(project)
+        except Exception as dbt_exc:
+            logger.warning("dbt trigger failed (pipeline data is safe): %s", dbt_exc)
         return {"status": "ok", "rows_inserted": inserted, "quality": report.to_dict()}, 200
     except Exception as exc:
         logger.exception("Crime extraction failed: %s", exc)
